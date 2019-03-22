@@ -1,0 +1,189 @@
+body{
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+.body-container{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.page-header{
+    position: relative;
+    width: 96%;
+    height: 10%;
+    border-bottom: 1px solid #eee;
+    margin:0 2% 2% 2%;
+}
+
+.header-h1{
+    position: relative;
+    margin-top: 3%;
+    padding:0 2%;
+    
+}
+
+.header-h1>small{
+    float: right;
+    font-size: 65%;
+    color: #777
+}
+
+.header-h3{
+    display: none;
+    padding: 0 2%;
+}
+
+.header-h3>small{
+    font-size: 65%;
+    color: #777
+}
+
+.student-add-form{
+    position: relative;
+    padding: 0px 15px 15px 15px;
+    width: 22%;
+    height: auto;
+    float: right;
+    box-sizing: border-box;
+}
+
+.add-student-header{
+    margin:0;
+    padding-bottom: 5%
+}
+
+.form-group{
+    width: 90%;
+    display: table;
+    border-collapse: separate;
+    margin: 0;
+    margin-bottom: 5%;
+}
+.input-group-addon{
+    display: table-cell;
+    vertical-align: middle;
+    width: 2%;
+    padding: 6px 12px;
+    line-height: 1;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    background-color: #eee;
+}
+
+
+.form-control{
+    display: table-cell;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-left: 0;
+    border-radius: 0 4px 4px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.btn, .deletebtn{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    outline: none;
+}
+.deletebtn:hover{
+    background-color: #d4d4d4;
+}
+
+#addButton{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+
+}
+#addButton:hover{
+    background-color: #4b9e4b;
+}
+
+#cancelButton{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+#cancelButton:hover{
+    background-color: rgb(177, 177, 177);
+}
+
+.test{
+    background-color: hotpink;
+
+    border-color: #ccc;
+}
+
+.student-list-container{
+
+    width:71%;
+    height: auto;
+    position: relative;
+    float: left;
+    margin: 0 2%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+}
+
+.student-list{
+    position: relative;
+    left: 5%;
+    width: 90%;
+    margin: 0;
+}
+
+th, td{
+    width: 25%;
+    height: auto;
+    word-wrap: break-word;
+    padding-bottom: 2%
+}
+
+td{
+    padding-left: 5%;
+    padding-bottom: 1%;
+}
+
+
+
+@media (max-device-width: 768px),
+(max-width: 768px)
+{
+    .student-add-form{
+        width: 100%;
+        float: none;
+    }
+    .student-list-container{
+        width: 100%;
+        margin: 0px;
+    }
+    .header-h3{
+        display: block;
+        font-size: 24px;
+        font-weight: 500;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .header-h1{
+        display: none;
+    }
+}

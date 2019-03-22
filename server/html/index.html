@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <title>SGT</title>
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="components/student.js"></script>
+    <script type="text/javascript" src="components/sgt.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="tests/tests.css">
+    <script type="text/javascript" src="tests/tests.js"></script>
+    <meta name="viewport" content="initial-scale=1, user-scalable=no">
+</head>
+<body>
+
+<div class="body-container">
+    <div class="page-header">
+        <!-- only show this element when the isnt on mobile -->
+        <h1 class="header-h1">Student Grade Table
+            <small class="average">Grade Average : <span class="avgGrade">0</span></small>
+        </h1>
+        <!-- only show this element when the user gets to a mobile version -->
+        <h3 class="header-h3">Student Grade Table<br>
+            <small class="average">Grade Average : <span class="avgGrade"></span></small>
+        </h3>
+    </div>
+    <div class="student-add-form">
+        <h4 class="add-student-header">Add Student</h4>
+        <div class="form-group">
+            <span class="input-group-addon">
+                <span class="glyphicon"><i class="fas fa-user"></i></span>
+            </span>
+            <input type="text" class="form-control form-rounded" name="studentName" id="studentName" placeholder="Student Name">
+        </div>
+        <div class="form-group">
+            <span class="input-group-addon">
+                <span class="glyphicon"><i class="fas fa-book"></i></span>
+            </span>
+            <input type="text" class="form-control form-rounded" name="course" id="studentCourse" placeholder="Student Course">
+        </div>
+        <div class="form-group">
+            <span class="input-group-addon">
+                <span class="glyphicon"><i class="fas fa-window-restore"></i></span>
+            </span>
+            <input type="text" class="form-control form-rounded" name="studentGrade" id="studentGrade" placeholder="Student Grade">
+        </div>
+        <button type="button" class="add btn" id="addButton">Add</button>
+        <button type="button" class="cancel btn" id="cancelButton">Cancel</button>
+        <button type="button" class="test btn">Get data</button>
+    </div>
+    <div class="student-list-container">
+        <table class="student-list">
+            <thead>
+            <tr>
+                <th class="col-xs-4 col-md-4">Student Name</th>
+                <th class="col-xs-4 col-md-4">Student Course</th>
+                <th class="col-xs-4 col-md-4">Student Grade</th>
+                <th class="col-xs-4 col-md-4">Operations</th>
+            </tr>
+            </thead>
+            <tbody id="displayArea">
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+</body>
+</html>
+

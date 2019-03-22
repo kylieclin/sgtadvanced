@@ -3,26 +3,49 @@ const express = require('express'); //load the express library into the file
 const server = express();
 
 server.use( express.static(__dirname + '/html') );
-
-let insults = ['hi', 'hello', 'ya'];
-    //the url path to listen for
-    //the callback function to call once that path has been received
-server.get('/', (req,res) =>{
-    //an objext representing all the data coming from the client to the server
-    //an object representing all the data going from the server to the client
-    res.send('Hello, World.');
-})
-
-server.get('/time', (req, res)=>{
-    let now = new Date();
-    res.send(now.toLocaleDateString());
-})
-
-server.get('/insult', (req, res) =>{
-    let index = Math.floor(Math.random()*insults.length);
-    res.send(insults[index]);
-})
+//express.static To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
+//In Node.js, __dirname is always the directory in which the currently executing script resides
+          //api can name anything
+server.get('/api/grades', (req,res) =>{
+    res.send(`{
+        "success": true,
+        "data": [{
+            "id": 10,
+            "name": "Ya Yo",
+            "course": "cook",
+            "grade": 80
+        }, {
+            "id": 1,
+            "name": "Ay Hui",
+            "course": "Book",
+            "grade": 56
+        }, {
+            "id": 2,
+            "name": "Do Re",
+            "course": "Music",
+            "grade": 100
+        }, {
+            "id": 3,
+            "name": "Mi Fa",
+            "course": "yuk",
+            "grade": 77
+        }]
+    }`)
+});
 
 server.listen(3001, ()=>{
     console.log('server is running on port 3001');
-})
+});
+
+
+
+// server.get('/', (req,res) =>{
+//     //an objext representing all the data coming from the client to the server
+//     //an object representing all the data going from the server to the client
+//     res.send('Hello, World.');
+// })
+
+// server.get('/time', (req, res)=>{
+//     let now = new Date();
+//     res.send(now.toLocaleDateString());
+// })
