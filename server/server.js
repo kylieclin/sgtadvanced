@@ -73,14 +73,38 @@ server.post('/api/grades', (req, res)=>{
     })
 })
 
-
-//server.delete()
+//delete student
+server.delete('/api/grades', (req, res)=>{ // '/api/grades/:student_id'
+    // console.log(req.query);  
+    //req.query is from the url params student_id=1 (in sgt delete : url: 'api/grades?student_id='+parseId)
+    if(req.query.student_id === undefined){ //req.params.student_id
+        res.send({
+            success: false,
+            error: 'must provide a student id for delete'
+        })
+        return;
+    }
+    db.connect(()=>{
+        const query = 'DELETE FROM `grades` WHERE `id`='+ req.query.student_id;
+        db.query(query, (error, results) => {
+            if(!error){
+              res.send({
+                  success: true
+              });  
+            } else {
+                res.send({
+                    success: false,
+                    error
+                })
+            }
+        })
+    })
+    
+})
 
 server.listen(3001, ()=>{
     console.log('server is running on port 3001');
 });
-
-
 
 // server.get('/', (req,res) =>{
 //     //an objext representing all the data coming from the client to the server

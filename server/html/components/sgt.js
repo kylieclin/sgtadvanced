@@ -70,7 +70,7 @@ class SGT_template{
 	}
 	sendDataToServer(name, course, grade){
 		var ajaxObj = {
-			url: 'http://s-apis.learningfuze.com/sgt/create',
+			url: 'api/grades',
 			method: 'post',
 			data:{
 				api_key: 'AJL1aI5ORd',
@@ -272,21 +272,15 @@ class SGT_template{
 
 		if(!isNaN(id) && this.doesStudentExist(id)){
 			var parseId = parseInt(id);
-			// delete this.data[parseId];
 			var ajaxObj ={
-				url: 'http://s-apis.learningfuze.com/sgt/delete',
-				method: 'post',
-				data:{
-					api_key: 'AJL1aI5ORd',
-					student_id: parseId
-				},
+				url: 'api/grades?student_id='+parseId, //`api/grade/${parseId}`
+				method: 'delete',
 				success: this.getDataFromServer,
 				error: this.handleError
 			}
 			$.ajax(ajaxObj);
 			return true;
 		} else {
-
 			return false;
 		}
 		
