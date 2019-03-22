@@ -14,6 +14,8 @@ server.use( express.static(__dirname + '/html') ); //.use is  the middleware
 
 server.use( express.urlencoded({ extended: false}) ); //have express pull body data that is urlencoded and place it into an obj called "body"   
 
+//server.use( express.json()) //use for things like axios
+
 //make an endpoint to handle retrieving the grades of all students           
 server.get('/api/grades', (req,res) =>{ //api can name anything| when the server receive the request of the url call the function
     db.connect( ()=>{ //establish the connection to the database, and call the callback when the connecttion is made
@@ -40,6 +42,35 @@ server.get('/api/grades', (req,res) =>{ //api can name anything| when the server
 //add student
 server.post('/api/grades', (req, res)=>{
 
+    // check body see if any data was not send
+    if(req.body.name === undefined || req.body.course === undefined  || req.body.grade === undefined ){
+        res.send({//if not send error message to client
+            success: false,
+            error: 'invalid name, course, or grade'
+        });
+        return; //quit server.post function
+    }
+
+    db.connect(()=>{ //connect to database
+        const name = req.body.name.split(" "); //split surname and givenname into an array
+
+        const query = 'INSERT INTO `grades` SET `surname` = "'+name.slice(1).join(' ')+'", `givenname`="'+name[0]+'", `course` = "'+req.body.course+'", `grade`='+req.body.grade+', `added`=NOW()'; //set my sql query
+
+        db.query(query, (error, results)=>{
+
+            if(!error){
+                res.send({
+                    success: true,
+                    new_id: results.insertId //insertId get the data of the auto increemnt field
+                })
+            } else {
+                res.send({
+                    success: flase,
+                    error 
+                }) 
+            }
+        })
+    })
 })
 
 
