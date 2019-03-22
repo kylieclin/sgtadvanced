@@ -1,43 +1,49 @@
 
 const express = require('express'); //load the express library into the file
-const mysql = require('mysql');
-const mysqlcredientials = require('./mysqlcreds.js'); //put in other file ./means current folder
+const mysql = require('mysql'); //load mysql library
+const mysqlcredientials = require('./mysqlcreds.js'); //load creds in other file./means current folder
 //crediential create here will be different from the folder so we have to ignore it
 
-const db = mysql.createConnection( mysqlcredientials );
+const db = mysql.createConnection( mysqlcredientials );  //using the credentials that we loaded, establish a preliminary connection to the database
 
 const server = express();
 
-server.use( express.static(__dirname + '/html') );
+server.use( express.static(__dirname + '/html') ); //.use is  the middleware
 //express.static To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express.
 //In Node.js, __dirname is always the directory in which the currently executing script resides
-          //api can name anything
-server.get('/api/grades', (req,res) =>{
-    res.send(`{
-        "success": true,
-        "data": [{
-            "id": 10,
-            "name": "Ya Yo",
-            "course": "cook",
-            "grade": 80
-        }, {
-            "id": 1,
-            "name": "Ay Hui",
-            "course": "Book",
-            "grade": 56
-        }, {
-            "id": 2,
-            "name": "Do Re",
-            "course": "Music",
-            "grade": 100
-        }, {
-            "id": 3,
-            "name": "Mi Fa",
-            "course": "yuk",
-            "grade": 77
-        }]
-    }`)
+
+server.use( express.urlencoded({ extended: false}) ); //have express pull body data that is urlencoded and place it into an obj called "body"   
+
+//make an endpoint to handle retrieving the grades of all students           
+server.get('/api/grades', (req,res) =>{ //api can name anything| when the server receive the request of the url call the function
+    db.connect( ()=>{ //establish the connection to the database, and call the callback when the connecttion is made
+        const query = 'SELECT `id`, CONCAT(`givenname`," ", `surname`) AS `name`, `course`, `grade` FROM `grades`'; //query of mysql
+
+        //send the query to database and get callback function when data retrived
+        db.query(query , (error, data )=>{
+            const output = { //make output an obj looks same as the dummy data for send to client
+                success: false,
+            }
+            if(!error){ // if no error, error will be null
+                //notify client success
+                output.success = true;
+                //give the data to client
+                output.data = data;
+            } else {
+                output.error = error;
+            }
+             res.send(output);              
+        })
+    });
 });
+
+//add student
+server.post('/api/grades', (req, res)=>{
+
+})
+
+
+//server.delete()
 
 server.listen(3001, ()=>{
     console.log('server is running on port 3001');
