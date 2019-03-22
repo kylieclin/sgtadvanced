@@ -1,5 +1,11 @@
 
 const express = require('express'); //load the express library into the file
+const mysql = require('mysql');
+const mysqlcredientials = require('./mysqlcreds.js'); //put in other file ./means current folder
+//crediential create here will be different from the folder so we have to ignore it
+
+const db = mysql.createConnection( mysqlcredientials );
+
 const server = express();
 
 server.use( express.static(__dirname + '/html') );
